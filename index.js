@@ -10,6 +10,11 @@ app.use(helmet());
 
 const db = require("./models");
 
+// Echo api
+app.get("/api", (request, response) => {
+  response.send("Rentify server 🔥");
+});
+
 const authRouter = require("./routes/authRoutes");
 app.use("/auth", authRouter);
 
