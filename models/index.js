@@ -4,8 +4,20 @@ const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
-const env = "development";
-const config = require(__dirname + "/../config/config.json")[env];
+console.log("ENV -->", process.env.PGUSER);
+const config = {
+  username: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  host: process.env.PGHOST,
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+};
 const db = {};
 
 let sequelize;

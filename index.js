@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv").config();
 const app = express();
 const helmet = require("helmet");
 
@@ -15,8 +16,8 @@ app.use("/auth", authRouter);
 const propertyRouter = require("./routes/propertyRoutes");
 app.use("/property", propertyRouter);
 
-db.sequelize.sync({ force: true }).then(() => {
-  app.listen(3001, () => {
-    console.log("<---Rentify Server Connected: 3001--->");
+db.sequelize.sync().then(() => {
+  app.listen(8080, () => {
+    console.log("<---Rentify Server Connected--->");
   });
 });
